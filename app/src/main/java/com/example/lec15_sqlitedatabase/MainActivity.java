@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
                         (MainActivity.this, android.R.layout.simple_list_item_1,list);
                 listViewStudent.setAdapter(arrayAdapter);
+                Log.d("get also ok"," run");
 
             }
         });
