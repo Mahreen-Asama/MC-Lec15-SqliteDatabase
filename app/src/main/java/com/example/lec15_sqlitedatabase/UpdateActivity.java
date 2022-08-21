@@ -2,6 +2,7 @@ package com.example.lec15_sqlitedatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,13 @@ public class UpdateActivity extends AppCompatActivity {
         roll=findViewById(R.id.uarn);
         enroll=findViewById(R.id.uas);
 
+        Intent in=getIntent();
+        name.setText(in.getStringExtra("name"));
+        roll.setText(in.getStringExtra("roll")+"");
+        enroll.setChecked(in.getBooleanExtra("enroll",false));
+
+        int id=in.getIntExtra("ID",0);
+
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +39,7 @@ public class UpdateActivity extends AppCompatActivity {
                 boolean enrol=enroll.isChecked();
 
                 DBHelper helper=new DBHelper(UpdateActivity.this);
-                helper.updateStudent(1,n,rol,enrol);
+                helper.updateStudent(id,n,rol,enrol);
             }
         });
 

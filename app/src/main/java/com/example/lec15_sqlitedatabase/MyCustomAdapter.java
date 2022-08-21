@@ -53,10 +53,10 @@ public class MyCustomAdapter extends ArrayAdapter<StudentModel> {
             @Override
             public void onClick(View view) {
                 Intent in=new Intent(parent.getContext(),UpdateActivity.class);
-                in.putExtra("ID",student.getID()+"");
+                in.putExtra("ID",student.getID());
                 in.putExtra("name",student.getName()+"");
-                in.putExtra("roll",student.getRollNmber()+"");
-                in.putExtra("enroll",student.isEnroll()+"");
+                in.putExtra("roll",student.getRollNmber());
+                in.putExtra("enroll",student.isEnroll());
                 parent.getContext().startActivity(in);
                 //db.updateStudent(student.getId(),);
             }
