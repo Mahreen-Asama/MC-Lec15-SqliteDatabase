@@ -6,4 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".UpdateActivity">
 
+    <EditText
+        android:id="@+id/uan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/uas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="47dp"
+        android:text="Enroll"
+        app:layout_constraintBottom_toTopOf="@+id/uabtn"
+        app:layout_constraintStart_toStartOf="@+id/uabtn"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/uabtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="121dp"
+        android:layout_marginTop="295dp"
+        android:text="Update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/uarn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Roll number"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="@+id/uan"
+        app:layout_constraintTop_toBottomOf="@+id/uan" />
 </androidx.constraintlayout.widget.ConstraintLayout>

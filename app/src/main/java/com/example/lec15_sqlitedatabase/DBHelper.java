@@ -58,15 +58,15 @@ public class DBHelper extends SQLiteOpenHelper {
         //else{return true;}
     }
     //Update
-    public void updateStudent(int id, StudentModel STUDENTModel){
+    public void updateStudent(int id, String newName, int newRollNumber, boolean newEnroll){
         ContentValues cv = new ContentValues();
 
-        cv.put(STUDENT_NAME, STUDENTModel.getName());
-        cv.put(STUDENT_ROLL, STUDENTModel.getRollNmber());
-        cv.put(STUDENT_ENROLL, STUDENTModel.isEnroll());
+        cv.put(STUDENT_NAME, newName);
+        cv.put(STUDENT_ROLL, newRollNumber);
+        cv.put(STUDENT_ENROLL, newEnroll);
 
         SQLiteDatabase db = this.getWritableDatabase();         //getting object of Db
-        //Cursor cursorCourses = db.rawQuery("SELECT * FROM " + STUDENT_TABLE, STUDENT_ID:id);
+        int n=db.update(STUDENT_TABLE, cv, STUDENT_ID+"="+id, null);
 
     }
     //Delete
@@ -90,7 +90,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursorCourses.moveToFirst()) {
             do {
 
-                studentArrayList.add(new StudentModel(cursorCourses.getInt(0),
+                studentArrayList.add(new StudentModel(
                         cursorCourses.getString(1),
                         cursorCourses.getInt(2),
                         cursorCourses.getInt(3) == 1 ? true : false));
