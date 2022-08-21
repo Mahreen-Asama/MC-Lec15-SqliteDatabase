@@ -17,6 +17,10 @@ public class StudentModel {
     public int getID() {
         return ID;
     }
+    public void setID(int id) {
+        this.ID=id;
+    }
+
 
     public String getName() {
         return name;

@@ -59,6 +59,7 @@ public class MyCustomAdapter<S> extends ArrayAdapter<StudentModel> {
             public void onClick(View view) {
                 DBHelper db=new DBHelper(null);
                 db.deleteStudent(student.getID());
+                notifyDataSetChanged();
             }
         });
 

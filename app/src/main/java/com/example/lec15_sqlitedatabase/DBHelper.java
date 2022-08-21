@@ -67,7 +67,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();         //getting object of Db
         int n=db.update(STUDENT_TABLE, cv, STUDENT_ID+"="+id, null);
-
+        Log.d("rows updated: ", Integer.toString(n));
+        db.close();
     }
     //Delete
     public void deleteStudent(int id){
@@ -76,6 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         int n=db.delete(STUDENT_TABLE, STUDENT_ID+"="+id, null);
         Log.d("rows deleted: ", Integer.toString(n));
+        db.close();
     }
     //READ
     public ArrayList<StudentModel> getAllStudents() {
@@ -89,11 +91,11 @@ public class DBHelper extends SQLiteOpenHelper {
         // moving our cursor to first position.
         if (cursorCourses.moveToFirst()) {
             do {
-
-                studentArrayList.add(new StudentModel(
-                        cursorCourses.getString(1),
+                StudentModel s=new StudentModel(cursorCourses.getString(1),
                         cursorCourses.getInt(2),
-                        cursorCourses.getInt(3) == 1 ? true : false));
+                        cursorCourses.getInt(3) == 1 ? true : false);
+                        s.setID(cursorCourses.getInt(0));       //id also set
+                studentArrayList.add(s);
             } while (cursorCourses.moveToNext());
 
         }
