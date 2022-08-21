@@ -3,14 +3,20 @@ package com.example.lec15_sqlitedatabase;
 import androidx.annotation.NonNull;
 
 public class StudentModel {
+    private final int ID;
     private String name;
     private int rollNmber;
     private boolean isEnroll;
 
-    public StudentModel(String name, int rollNmber, boolean isEnroll) {
+    public StudentModel(int id, String name, int rollNmber, boolean isEnroll) {
+        this.ID=id;
         this.name = name;
         this.rollNmber = rollNmber;
         this.isEnroll = isEnroll;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public String getName() {

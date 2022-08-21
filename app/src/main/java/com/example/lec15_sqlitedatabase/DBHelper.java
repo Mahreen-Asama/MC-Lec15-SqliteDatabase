@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -73,6 +74,8 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();         //getting object of Db
         //Cursor cursorCourses = db.rawQuery("DELETE FROM " + STUDENT_TABLE, STUDENT_ID==id);
 
+        int n=db.delete(STUDENT_TABLE, STUDENT_ID+"="+id, null);
+        Log.d("rows deleted: ", Integer.toString(n));
     }
     //READ
     public ArrayList<StudentModel> getAllStudents() {
@@ -87,13 +90,13 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursorCourses.moveToFirst()) {
             do {
 
-                studentArrayList.add(new StudentModel(cursorCourses.getString(1),
+                studentArrayList.add(new StudentModel(cursorCourses.getInt(0),
+                        cursorCourses.getString(1),
                         cursorCourses.getInt(2),
                         cursorCourses.getInt(3) == 1 ? true : false));
             } while (cursorCourses.moveToNext());
 
         }
-
         cursorCourses.close();
         db.close();
         return studentArrayList;
