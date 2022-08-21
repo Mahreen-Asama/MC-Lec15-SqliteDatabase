@@ -1,6 +1,7 @@
 package com.example.lec15_sqlitedatabase;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class MyCustomAdapter<S> extends ArrayAdapter<StudentModel> {
+public class MyCustomAdapter extends ArrayAdapter<StudentModel> {
     public MyCustomAdapter(@NonNull Context context, int resource, @NonNull List<StudentModel> objects) {
         super(context, resource, objects);
     }
@@ -26,14 +27,16 @@ public class MyCustomAdapter<S> extends ArrayAdapter<StudentModel> {
 
         convertView= LayoutInflater.from(getContext()).inflate(R.layout.custom_listview,parent,false);
 
-        //TextView id=convertView.findViewById(R.id.s_id);
+        TextView id=convertView.findViewById(R.id.s_id);
         TextView name=convertView.findViewById(R.id.s_name);
         TextView rollnumber=convertView.findViewById(R.id.s_rollnumber);
         TextView isenroll=convertView.findViewById(R.id.s_enroll);
+         Button updateButton=convertView.findViewById(R.id.update);
+        Button deleteButton=convertView.findViewById(R.id.delete);
 
-        //id.setText(student.getId());
-        name.setText(student.getName());
-        rollnumber.setText(student.getRollNmber());
+        id.setText(student.getID()+"");         //so that it becomes string
+        name.setText(student.getName()+"");
+        rollnumber.setText(student.getRollNmber()+"");
         boolean enrol=student.isEnroll();
         if(enrol){
             isenroll.setText("yess enroll");
@@ -43,21 +46,25 @@ public class MyCustomAdapter<S> extends ArrayAdapter<StudentModel> {
         }
 
         //set click listener on 3 buttons
-        Button updateButton=convertView.findViewById(R.id.update);
-        Button deleteButton=convertView.findViewById(R.id.delete);
-        Button viewButton=convertView.findViewById(R.id.view);
-
+//
+//        Button viewButton=convertView.findViewById(R.id.view);
+//
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db=new DBHelper(null);
+                Intent in=new Intent(parent.getContext(),UpdateActivity.class);
+                in.putExtra("ID",student.getID()+"");
+                in.putExtra("name",student.getName()+"");
+                in.putExtra("roll",student.getRollNmber()+"");
+                in.putExtra("enroll",student.isEnroll()+"");
+                parent.getContext().startActivity(in);
                 //db.updateStudent(student.getId(),);
             }
         });
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db=new DBHelper(null);
+                DBHelper db=new DBHelper(parent.getContext());
                 db.deleteStudent(student.getID());
                 notifyDataSetChanged();
             }

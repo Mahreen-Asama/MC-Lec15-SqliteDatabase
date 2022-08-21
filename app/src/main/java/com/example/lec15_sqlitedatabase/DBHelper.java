@@ -101,6 +101,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursorCourses.close();
         db.close();
+        Log.d("getAll students"," run ok");
         return studentArrayList;
     }
 
